@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TODO_Application</string>
+    <string name="todo">TODO\n</string>
+</resources>
