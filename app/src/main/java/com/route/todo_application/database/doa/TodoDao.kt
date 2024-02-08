@@ -1,0 +1,20 @@
+package com.route.todo_application.database.doa
+
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
+import com.route.todo_application.database.model.Todo
+
+interface TodoDao {
+    @Insert
+    fun insert(todo: Todo)
+    @Delete
+    fun delete(todo: Todo)
+    @Update
+    fun udpate(todo: Todo)
+    @Query("select * from Todo")
+    fun getAll() : List<Todo>
+    @Query("select * from Todo where date = :date ")
+    fun getTodoByDate(date : Long)
+}
