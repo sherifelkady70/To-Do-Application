@@ -11,4 +11,8 @@
     <string name="select_time">select time</string>
     <string name="save">Save</string>
     <string name="add_new_task">Add New Task</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="modes">Modes</string>
+    <string name="light">Light</string>
 </resources>
