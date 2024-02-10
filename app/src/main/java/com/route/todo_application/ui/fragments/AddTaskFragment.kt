@@ -1,11 +1,15 @@
 package com.route.todo_application.ui.fragments
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.route.todo_application.databinding.FragmentAddTaskBinding
+import java.util.Calendar
 
 class AddTaskFragment : BottomSheetDialogFragment() {
     lateinit var binding : FragmentAddTaskBinding
@@ -21,6 +25,7 @@ class AddTaskFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        handleDate()
         fabAddTask()
     }
 
@@ -46,5 +51,26 @@ class AddTaskFragment : BottomSheetDialogFragment() {
         }
         return isValid
     }
+
+    private fun handleDate(){
+        val selectedDate = Calendar.getInstance()
+        binding.selectDateTv.text = "${selectedDate.get(Calendar.DAY_OF_MONTH)} /" +
+                "${selectedDate.get(Calendar.MONTH)+1} /" +
+                "${selectedDate.get(Calendar.YEAR)}"
+        val day = selectedDate.get(Calendar.DAY_OF_MONTH)
+        val month = selectedDate.get(Calendar.MONTH)+1
+        val year = selectedDate.get(Calendar.YEAR)
+        binding.selectDateTv.setOnClickListener {
+            val datePicker = DatePickerDialog(requireContext(),object : OnDateSetListener{
+                override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+                    binding.selectDateTv.text = "${dayOfMonth}/${month+1}/${year}"
+                }
+
+            }, day,month,year)
+            datePicker.show()
+        }
+    }
+
+
 }
 
