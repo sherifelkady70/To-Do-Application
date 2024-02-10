@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_bg"
-    tools:context=".HomeActivity">
+    tools:context=".ui.activities.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -46,7 +46,7 @@
             android:layout_marginStart="10dp"
             android:layout_gravity="center"
             app:menu="@menu/nav_menu"
-            app:elevation="0dp"
+            app:elevation="5dp"
             android:backgroundTint="@android:color/transparent"
             app:itemActiveIndicatorStyle="@null"
             app:itemBackground="@null"

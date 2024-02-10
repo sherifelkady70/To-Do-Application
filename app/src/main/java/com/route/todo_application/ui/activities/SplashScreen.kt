@@ -1,10 +1,9 @@
-package com.route.todo_application.splash
+package com.route.todo_application.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.route.todo_application.HomeActivity
 import com.route.todo_application.R
 
 class SplashScreen : AppCompatActivity() {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_bg"
-    tools:context=".splash.SplashScreen">
+    tools:context=".ui.activities.SplashScreen">
     <ImageView
         android:id="@+id/todoLogo"
         android:layout_width="189dp"

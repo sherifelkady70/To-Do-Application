@@ -8,6 +8,9 @@ android {
     namespace 'com.route.todo_application'
     compileSdk 34
 
+    viewBinding{
+        enabled = true
+    }
     defaultConfig {
         applicationId "com.route.todo_application"
         minSdk 24
