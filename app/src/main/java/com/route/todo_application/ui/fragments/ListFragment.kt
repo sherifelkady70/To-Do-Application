@@ -5,20 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.route.todo_application.adapter.TodoAdapter
 import com.route.todo_application.database.MyDatabase
 import com.route.todo_application.database.model.Todo
 import com.route.todo_application.databinding.FragmentTasksBinding
 
 class ListFragment : Fragment() {
-    lateinit var todoAdapter : TodoAdapter
+    private val todoAdapter  = TodoAdapter(listOf())
     lateinit var binding : FragmentTasksBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentTasksBinding.inflate(layoutInflater,container,false)
+        binding = FragmentTasksBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -33,8 +34,8 @@ class ListFragment : Fragment() {
         refreshAdapter()
     }
 
-    private fun refreshAdapter(){
-        val myList = MyDatabase.getInstance(requireContext()).getTodoDao().getAll()
+     fun refreshAdapter(){
+        val myList = MyDatabase.getInstance(requireActivity().applicationContext).getTodoDao().getAll()
         todoAdapter.updateNewList(myList)
     }
 }

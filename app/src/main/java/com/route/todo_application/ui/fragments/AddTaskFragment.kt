@@ -13,8 +13,9 @@ import com.route.todo_application.database.model.Todo
 import com.route.todo_application.databinding.FragmentAddTaskBinding
 import java.util.Calendar
 
-class AddTaskFragment : BottomSheetDialogFragment() {
+class AddTaskFragment(private val onAddClick : () -> Unit) : BottomSheetDialogFragment() {
     lateinit var binding : FragmentAddTaskBinding
+    private var selectedDate: Calendar = Calendar.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,32 +34,19 @@ class AddTaskFragment : BottomSheetDialogFragment() {
 
     private fun fabAddTask(){
         binding.addTaskBtn.setOnClickListener {
-            val title = binding.title.text.toString()
-            val description = binding.description.text.toString()
             if(validateTexts()){
-//                MyDatabase.getInstance(requireContext()).getTodoDao().insert(
-//                    Todo(title= title, description = description,))
+                val title = binding.title.text.toString()
+                val description = binding.description.text.toString()
+                val todo = Todo(title= title, description = description, isDone = false,
+                    date = selectedDate.timeInMillis)
+                MyDatabase.getInstance(requireActivity().applicationContext).getTodoDao().insert(todo)
+                dismiss()
+                onAddClick.invoke()
             }
         }
     }
 
-    private fun validateTexts(): Boolean {
-        var isValid = true
-       val title =  binding.title.editableText.toString()
-       val des =  binding.description.editableText.toString()
-        if(title.isEmpty()){
-            binding.title.error = "Please Enter Title For Todo"
-            isValid=false
-        }
-        if(des.isEmpty()){
-            binding.description.error = "Please Enter Description For Todo"
-            isValid = false
-        }
-        return isValid
-    }
-
     private fun handleDate(){
-        val selectedDate = Calendar.getInstance()
         binding.selectDateTv.text = "${selectedDate.get(Calendar.DAY_OF_MONTH)} /" +
                 "${selectedDate.get(Calendar.MONTH)+1} /" +
                 "${selectedDate.get(Calendar.YEAR)}"
@@ -76,6 +64,19 @@ class AddTaskFragment : BottomSheetDialogFragment() {
         }
     }
 
-
+    private fun validateTexts(): Boolean {
+        var isValid = true
+        val title =  binding.title.editableText.toString()
+        val des =  binding.description.editableText.toString()
+        if(title.isEmpty()){
+            binding.title.error = "Please Enter Title For Todo"
+            isValid=false
+        }
+        if(des.isEmpty()){
+            binding.description.error = "Please Enter Description For Todo"
+            isValid = false
+        }
+        return isValid
+    }
 }
 

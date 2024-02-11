@@ -9,7 +9,7 @@ import com.route.todo_application.databinding.ItemTaskBinding
 class TodoAdapter(var todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>(){
 
     fun updateNewList(newTodoList : List<Todo>){
-        this.todoList = newTodoList
+        todoList = newTodoList
         notifyDataSetChanged()
     }
     class TodoViewHolder(val binding : ItemTaskBinding) : RecyclerView.ViewHolder(binding.root){}
@@ -26,6 +26,6 @@ class TodoAdapter(var todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.T
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         val data : Todo = todoList[position]
         holder.binding.title.text = data.title
-        holder.binding.time.text = data.date.toString()
+        holder.binding.time.text = data.description
     }
 }
