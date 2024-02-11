@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.route.todo_application.database.MyDatabase
+import com.route.todo_application.database.model.Todo
 import com.route.todo_application.databinding.FragmentAddTaskBinding
 import java.util.Calendar
 
@@ -31,8 +33,11 @@ class AddTaskFragment : BottomSheetDialogFragment() {
 
     private fun fabAddTask(){
         binding.addTaskBtn.setOnClickListener {
+            val title = binding.title.text.toString()
+            val description = binding.description.text.toString()
             if(validateTexts()){
-                //code for database
+//                MyDatabase.getInstance(requireContext()).getTodoDao().insert(
+//                    Todo(title= title, description = description,))
             }
         }
     }
