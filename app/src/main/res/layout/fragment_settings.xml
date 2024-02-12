@@ -41,7 +41,6 @@
         app:boxStrokeColor="@color/blue"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         app:boxBackgroundColor="@color/bottom_nav_bg_color"
-        app:startIconDrawable="@drawable/baseline_language_24"
         android:drawSelectorOnTop="true"
         >
 
@@ -78,7 +77,6 @@
         app:boxStrokeColor="@color/blue"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         app:boxBackgroundColor="@color/bottom_nav_bg_color"
-        app:startIconDrawable="@drawable/baseline_language_24"
         android:drawSelectorOnTop="true"
         >
 

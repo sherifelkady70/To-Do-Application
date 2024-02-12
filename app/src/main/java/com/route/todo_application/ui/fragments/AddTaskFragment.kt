@@ -3,11 +3,13 @@ package com.route.todo_application.ui.fragments
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.route.todo_application.clearTime
 import com.route.todo_application.database.MyDatabase
 import com.route.todo_application.database.model.Todo
 import com.route.todo_application.databinding.FragmentAddTaskBinding
@@ -15,7 +17,7 @@ import java.util.Calendar
 
 class AddTaskFragment(private val onAddClick : () -> Unit) : BottomSheetDialogFragment() {
     lateinit var binding : FragmentAddTaskBinding
-    private var selectedDate: Calendar = Calendar.getInstance()
+    private var selectedDateForDatabse: Calendar = Calendar.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,7 +31,7 @@ class AddTaskFragment(private val onAddClick : () -> Unit) : BottomSheetDialogFr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleDate()
-        fabAddTask()
+  //      fabAddTask()
     }
 
     private fun fabAddTask(){
@@ -37,31 +39,36 @@ class AddTaskFragment(private val onAddClick : () -> Unit) : BottomSheetDialogFr
             if(validateTexts()){
                 val title = binding.title.text.toString()
                 val description = binding.description.text.toString()
+                selectedDateForDatabse.clearTime()
                 val todo = Todo(title= title, description = description, isDone = false,
-                    date = selectedDate.timeInMillis)
+                    date = selectedDateForDatabse.timeInMillis)
                 MyDatabase.getInstance(requireActivity().applicationContext).getTodoDao().insert(todo)
                 dismiss()
+                Log.e("add","${selectedDateForDatabse.timeInMillis}")
                 onAddClick.invoke()
             }
         }
     }
 
     private fun handleDate(){
-        binding.selectDateTv.text = "${selectedDate.get(Calendar.DAY_OF_MONTH)} /" +
-                "${selectedDate.get(Calendar.MONTH)+1} /" +
-                "${selectedDate.get(Calendar.YEAR)}"
-        val day = selectedDate.get(Calendar.DAY_OF_MONTH)
-        val month = selectedDate.get(Calendar.MONTH)+1
-        val year = selectedDate.get(Calendar.YEAR)
+        binding.selectDateTv.text = "${selectedDateForDatabse.get(Calendar.DAY_OF_MONTH)} /" +
+                "${selectedDateForDatabse.get(Calendar.MONTH)+1} /" +
+                "${selectedDateForDatabse.get(Calendar.YEAR)}"
         binding.selectDateTv.setOnClickListener {
             val datePicker = DatePickerDialog(requireContext(),object : OnDateSetListener{
                 override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+                    selectedDateForDatabse.set(Calendar.YEAR,year)
+                    selectedDateForDatabse.set(Calendar.MONTH,month)
+                    selectedDateForDatabse.set(Calendar.DAY_OF_MONTH,dayOfMonth)
                     binding.selectDateTv.text = "${dayOfMonth}/${month+1}/${year}"
                 }
 
-            }, day,month,year)
+            }, selectedDateForDatabse.get(Calendar.DAY_OF_MONTH),selectedDateForDatabse.get(Calendar.MONTH)+1
+                ,selectedDateForDatabse.get(Calendar.YEAR))
+            datePicker.datePicker.minDate = Calendar.getInstance().timeInMillis
             datePicker.show()
         }
+        fabAddTask()
     }
 
     private fun validateTexts(): Boolean {
