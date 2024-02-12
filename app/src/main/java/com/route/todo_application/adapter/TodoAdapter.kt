@@ -1,13 +1,8 @@
 package com.route.todo_application.adapter
 
-import android.opengl.Visibility
-import android.service.autofill.VisibilitySetterAction
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.route.todo_application.database.MyDatabase
 import com.route.todo_application.database.model.Todo
 import com.route.todo_application.databinding.ItemTaskBinding
 
@@ -34,7 +29,7 @@ class TodoAdapter(var todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.T
         holder.binding.time.text = data.description
 
         holder.itemView.setOnClickListener {
-            onWHoleItem.let {
+            onWholeItem.let {
                it!!.onWholeItemClick(data,position)
             }
         }
@@ -50,7 +45,7 @@ class TodoAdapter(var todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.T
 //        fun onImageClick(position: Int)
 //    }
 
-    var onWHoleItem : OnWholeItemClickListener?=null
+    var onWholeItem : OnWholeItemClickListener?=null
     interface OnWholeItemClickListener {
         fun onWholeItemClick(data:Todo,position: Int)
     }

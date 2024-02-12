@@ -24,6 +24,9 @@
         <activity
             android:name=".ui.activities.HomeActivity"
             android:exported="false"/>
+        <activity
+            android:name=".ui.activities.EditTaskActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

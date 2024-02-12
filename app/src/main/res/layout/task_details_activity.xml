@@ -19,7 +19,7 @@
             app:theme="@style/toolbar_style">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/title_Todo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/toolbar_title_style"

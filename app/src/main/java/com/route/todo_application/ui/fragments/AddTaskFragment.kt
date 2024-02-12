@@ -40,7 +40,8 @@ class AddTaskFragment(private val onAddClick : () -> Unit) : BottomSheetDialogFr
                 val title = binding.title.text.toString()
                 val description = binding.description.text.toString()
                 selectedDateForDatabse.clearTime()
-                val todo = Todo(title= title, description = description, isDone = false,
+                val todo = Todo(
+                    title = title, description = description, isDone = false,
                     date = selectedDateForDatabse.timeInMillis)
                 MyDatabase.getInstance(requireActivity().applicationContext).getTodoDao().insert(todo)
                 dismiss()

@@ -23,6 +23,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
         replaceFragments(listFragment)
         bottomNavView()
+
     }
 
     private fun bottomNavView(){

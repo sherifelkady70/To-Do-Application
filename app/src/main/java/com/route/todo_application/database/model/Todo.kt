@@ -3,18 +3,17 @@ package com.route.todo_application.database.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.prolificinteractive.materialcalendarview.CalendarDay
 
 @Entity
-data class Todo (
+data class Todo(
     @PrimaryKey(autoGenerate = true)
     val id: Int =0,
     @ColumnInfo
-    var title : String,
+    var title: String,
     @ColumnInfo
-    var description : String,
+    var description: String,
     @ColumnInfo
-    var date : Long,
+    var date: Long,
     @ColumnInfo
-    var isDone : Boolean
+    var isDone: Boolean
         )
