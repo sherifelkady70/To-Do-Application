@@ -31,7 +31,6 @@ class AddTaskFragment(private val onAddClick : () -> Unit) : BottomSheetDialogFr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleDate()
-  //      fabAddTask()
     }
 
     private fun fabAddTask(){
@@ -45,7 +44,7 @@ class AddTaskFragment(private val onAddClick : () -> Unit) : BottomSheetDialogFr
                     date = selectedDateForDatabse.timeInMillis)
                 MyDatabase.getInstance(requireActivity().applicationContext).getTodoDao().insert(todo)
                 dismiss()
-                Log.e("add","${selectedDateForDatabse.timeInMillis}")
+                Log.e("add","selectedDate in inserted add Task and after clearTime() and millis : ${selectedDateForDatabse.timeInMillis}")
                 onAddClick.invoke()
             }
         }
@@ -69,6 +68,7 @@ class AddTaskFragment(private val onAddClick : () -> Unit) : BottomSheetDialogFr
             datePicker.datePicker.minDate = Calendar.getInstance().timeInMillis
             datePicker.show()
         }
+        Log.e("add","selectedDate of add Task before clearTime(): ${selectedDateForDatabse}")
         fabAddTask()
     }
 

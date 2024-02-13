@@ -25,6 +25,9 @@
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:src="@drawable/baseline_delete_24"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:gravity="center"
             android:background="@drawable/backgroud_delete"
             android:contentDescription="@string/todo" />
 

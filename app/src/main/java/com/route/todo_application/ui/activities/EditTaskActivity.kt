@@ -10,7 +10,6 @@ import com.route.todo_application.databinding.ContentTaskDetailsBinding
 
 class EditTaskActivity : AppCompatActivity() {
     lateinit var binding : ContentTaskDetailsBinding
-    //var lisFragment = ListFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ContentTaskDetailsBinding.inflate(layoutInflater)
@@ -18,7 +17,7 @@ class EditTaskActivity : AppCompatActivity() {
         getIntentAndUpdate()
     }
 
-    fun getIntentAndUpdate(){
+    private fun getIntentAndUpdate(){
         val title = intent.getStringExtra(Constant.TITLEKEY)
         val description = intent.getStringExtra(Constant.DESKEY)
         val date = intent.getLongExtra(Constant.DATEKEY,0)

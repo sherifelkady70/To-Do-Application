@@ -34,18 +34,7 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.calendarView.selectedDate = selectedDate
-        binding.calendarView.setOnDateChangedListener(object : OnDateSelectedListener {
-            override fun onDateSelected(
-                widget: MaterialCalendarView,
-                date: CalendarDay,
-                selected: Boolean,
-            ) {
-                selectedDate = date
-              //  binding.calendarView.selectedDate = selectedDate
-                prepareRV()
-            }
-        })
+        handleCardViewWithListener()
         prepareRV()
         createIntentForEditTask()
         listenerForDelete()
@@ -62,7 +51,7 @@ class ListFragment : Fragment() {
     fun refreshAdapter() {
         val myList = MyDatabase.getInstance(requireActivity()).getTodoDao()
             .getTodoByDate(selectedDate.milliSeconds())
-        Log.e("Get", "${selectedDate.milliSeconds()}")
+        Log.e("add", "selectedDate in database:  ${selectedDate.milliSeconds()}")
         todoAdapter.updateNewList(myList)
   }
     private fun createIntentForEditTask(){
@@ -101,6 +90,13 @@ class ListFragment : Fragment() {
         }
 //        refreshAdapter()
 //        Log.e("onClose swipeLayout and test data","refresh fun outside listener: ${refreshAdapter()}")
+    }
+    private fun handleCardViewWithListener(){
+        binding.calendarView.selectedDate = selectedDate
+        binding.calendarView.setOnDateChangedListener { widget, date, selected ->
+            selectedDate = date
+            prepareRV()
+        }
     }
 
 //    fun listenerForImage(){
