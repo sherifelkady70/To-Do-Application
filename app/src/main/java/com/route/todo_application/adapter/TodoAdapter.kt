@@ -1,10 +1,14 @@
 package com.route.todo_application.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
+import android.view.View.OnScrollChangeListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.route.todo_application.database.model.Todo
 import com.route.todo_application.databinding.ItemTaskBinding
+import com.zerobranch.layout.SwipeLayout
 
 class TodoAdapter(var todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>(){
 
@@ -28,11 +32,25 @@ class TodoAdapter(var todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.T
         holder.binding.title.text = data.title
         holder.binding.time.text = data.description
 
-        holder.itemView.setOnClickListener {
+        holder.binding.editTxt.setOnClickListener {
             onWholeItem.let {
                it!!.onWholeItemClick(data,position)
             }
         }
+        holder.binding.swipeLayout.setOnActionsListener(object : SwipeLayout.SwipeActionsListener{
+            override fun onOpen(direction: Int, isContinuous: Boolean) {
+                if(direction == SwipeLayout.RIGHT) {
+                    holder.binding.swipeLayout.close(true)
+                    onDeleteItem!!.onDeleteClick(data,position)
+//                    holder.binding.swipeLayout.close()
+//                    Log.e("onClose swipeLayout and test data ","binding.swipeLayout.close()
+                //                    : ${holder.binding.swipeLayout.close()}")
+                }
+            }
+
+            override fun onClose() {
+            }
+        })
 //        holder.binding.btnTaskIsDone.setOnClickListener {
 //            holder.binding.btnTaskIsDone.visibility = View.INVISIBLE
 //            holder.binding.doneTxt.visibility = View.VISIBLE
@@ -48,5 +66,9 @@ class TodoAdapter(var todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.T
     var onWholeItem : OnWholeItemClickListener?=null
     interface OnWholeItemClickListener {
         fun onWholeItemClick(data:Todo,position: Int)
+    }
+    var onDeleteItem : onItemDeleteListener?=null
+    interface onItemDeleteListener{
+        fun onDeleteClick(data:Todo,position: Int)
     }
 }

@@ -48,6 +48,7 @@ class ListFragment : Fragment() {
         })
         prepareRV()
         createIntentForEditTask()
+        listenerForDelete()
     }
     override fun onResume() {
         super.onResume()
@@ -64,7 +65,7 @@ class ListFragment : Fragment() {
         Log.e("Get", "${selectedDate.milliSeconds()}")
         todoAdapter.updateNewList(myList)
   }
-    fun createIntentForEditTask(){
+    private fun createIntentForEditTask(){
         todoAdapter.onWholeItem = object : TodoAdapter.OnWholeItemClickListener{
             override fun onWholeItemClick(data: Todo, position: Int) {
                 val intent = Intent(requireActivity(),EditTaskActivity::class.java)
@@ -80,6 +81,26 @@ class ListFragment : Fragment() {
                 }
 
         }
+    }
+    private fun listenerForDelete(){
+        todoAdapter.onDeleteItem = object : TodoAdapter.onItemDeleteListener{
+            override fun onDeleteClick(data: Todo, position: Int) {
+                val todo = Todo(
+                    id=data.id,
+                    title =data.title,
+                    description = data.description,
+                    date = data.date,
+                    isDone = false
+                )
+                Log.e("onClose swipeLayout and test data","id = ${data.id}")
+                Log.e("onClose swipeLayout and test data","title = ${data.title}")
+                MyDatabase.getInstance(requireActivity()).getTodoDao().delete(todo)
+                refreshAdapter()
+                Log.e("onClose swipeLayout and test data","refresh fun inside listener: ${refreshAdapter()}")
+            }
+        }
+//        refreshAdapter()
+//        Log.e("onClose swipeLayout and test data","refresh fun outside listener: ${refreshAdapter()}")
     }
 
 //    fun listenerForImage(){

@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:autoMovingSensitivity="1000"
+        app:autoMovingSensitivity="200"
         app:swipeDirection="right"
         app:draggedItem="@id/drag_item"
         app:leftItem="@id/imageForDelete">
@@ -24,7 +24,7 @@
             android:id="@+id/imageForDelete"
             android:layout_width="90dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_delete"
+            android:src="@drawable/baseline_delete_24"
             android:background="@drawable/backgroud_delete"
             android:contentDescription="@string/todo" />
 
@@ -77,6 +77,19 @@
                     android:textStyle="bold"
                     />
                 <TextView
+                    android:id="@+id/edit_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/btn_task_isDone"
+                    app:layout_constraintStart_toStartOf="@id/btn_task_isDone"
+                    app:layout_constraintEnd_toEndOf="@id/btn_task_isDone"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/edit_todo"
+                    android:textColor="@color/blue"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal"
+                    android:textSize="13sp"/>
+                <TextView
                     android:id="@+id/time"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -107,7 +120,7 @@
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/edit_txt"
                     android:background="@drawable/check_mark"
                     android:layout_margin="20dp"
                     android:contentDescription="@string/todo" />
@@ -118,7 +131,7 @@
                     android:layout_height="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/edit_txt"
                     android:layout_margin="20dp"
                     android:visibility="invisible"
                     android:text="@string/done"

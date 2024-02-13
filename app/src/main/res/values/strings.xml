@@ -16,4 +16,5 @@
     <string name="modes">Modes</string>
     <string name="light">Light</string>
     <string name="done">Done!</string>
+    <string name="edit_todo">Edit Todo</string>
 </resources>
