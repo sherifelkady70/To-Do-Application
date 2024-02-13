@@ -28,74 +28,59 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTasksBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvTasks.adapter = todoAdapter
         binding.calendarView.selectedDate = selectedDate
         binding.calendarView.setOnDateChangedListener(object : OnDateSelectedListener {
-
             override fun onDateSelected(
                 widget: MaterialCalendarView,
                 date: CalendarDay,
                 selected: Boolean,
             ) {
                 selectedDate = date
-                binding.calendarView.selectedDate = selectedDate
-                refreshAdapter()
+              //  binding.calendarView.selectedDate = selectedDate
+                prepareRV()
             }
         })
-        refreshAdapter()
+        prepareRV()
         createIntentForEditTask()
     }
-
     override fun onResume() {
         super.onResume()
         refreshAdapter()
+        Log.e("onResume","done onresume")
     }
     private fun prepareRV() {
         binding.rvTasks.adapter = todoAdapter
-      //  refreshAdapter()
+        refreshAdapter()
     }
-
     fun refreshAdapter() {
         val myList = MyDatabase.getInstance(requireActivity()).getTodoDao()
             .getTodoByDate(selectedDate.milliSeconds())
         Log.e("Get", "${selectedDate.milliSeconds()}")
         todoAdapter.updateNewList(myList)
   }
-
     fun createIntentForEditTask(){
         todoAdapter.onWholeItem = object : TodoAdapter.OnWholeItemClickListener{
             override fun onWholeItemClick(data: Todo, position: Int) {
-                val intent = Intent(requireActivity().applicationContext,EditTaskActivity::class.java)
+                val intent = Intent(requireActivity(),EditTaskActivity::class.java)
                 intent.putExtra(Constant.TITLEKEY,data.title)
                 intent.putExtra(Constant.DESKEY,data.description)
                 intent.putExtra(Constant.DATEKEY,data.date)
-                intent.putExtra(Constant.DATEKEY,data.id)
+                intent.putExtra(Constant.IDKEY,data.id)
+                Log.e("onResume","title : ${ data.title}")
+                Log.e("onResume","title : ${ data.description}")
+                Log.e("onResume","title : ${ data.date}")
+                Log.e("onResume","id : ${data.id}")
                 startActivity(intent)
                 }
 
         }
     }
-//    fun convertMillisToTime(milliseconds: Long): String {
-//        val hours = TimeUnit.MILLISECONDS.toHours(milliseconds)
-//        val minutes = TimeUnit.MILLISECONDS.toMinutes(milliseconds) % 60
-//        val seconds = TimeUnit.MILLISECONDS.toSeconds(milliseconds) % 60
-//
-//        return String.format("%02d:%02d:%02d", hours, minutes, seconds)
-//    }
-//    fun refreshAdapter(selectDate : CalendarDay) {
-//        val myList = MyDatabase.getInstance(requireActivity().applicationContext).getTodoDao()
-//            .getTodoByDate(selectDate.milliSeconds())
-//        Log.e("Get", "${selectDate.milliSeconds()}")
-//        todoAdapter.updateNewList(myList)
-//    }
-
 
 //    fun listenerForImage(){
 //        todoAdapter.onImageClick = object : TodoAdapter.OnImageClickListener{

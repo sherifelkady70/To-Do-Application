@@ -9,4 +9,5 @@
     <color name="black_blue_light">#141922</color>
     <color name="grey">#C8C9CB</color>
     <color name="lime">#DFECDB</color>
+    <color name="colorForTimeItem">@color/black</color>
 </resources>
