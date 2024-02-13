@@ -18,6 +18,6 @@ interface TodoDao {
     fun udpate(todo: Todo)
     @Query("select * from Todo")
     fun getAll() : List<Todo>
-    @Query("select * from Todo where date = :date ")
-    fun getTodoByDate(date : Long) : List<Todo>
+    @Query("select * from Todo where date = :dates ")
+    fun getTodoByDate(dates : Long) : List<Todo>
 }

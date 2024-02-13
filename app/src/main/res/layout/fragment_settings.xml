@@ -87,8 +87,7 @@
             android:fontFamily="@font/poppins_bold"
             android:inputType="none"
             android:textColor="@color/blue"
-            android:textStyle="bold"
-            android:text="@string/light"/>
+            android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
