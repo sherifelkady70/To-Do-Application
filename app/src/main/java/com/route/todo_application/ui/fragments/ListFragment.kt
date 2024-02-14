@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import com.route.todo_application.Constant
 import com.route.todo_application.adapter.TodoAdapter
 import com.route.todo_application.database.MyDatabase
@@ -38,6 +36,7 @@ class ListFragment : Fragment() {
         prepareRV()
         createIntentForEditTask()
         listenerForDelete()
+        listenerForImageDone()
     }
     override fun onResume() {
         super.onResume()
@@ -55,8 +54,8 @@ class ListFragment : Fragment() {
         todoAdapter.updateNewList(myList)
   }
     private fun createIntentForEditTask(){
-        todoAdapter.onWholeItem = object : TodoAdapter.OnWholeItemClickListener{
-            override fun onWholeItemClick(data: Todo, position: Int) {
+        todoAdapter.onEditClick = object : TodoAdapter.OnEditClickListener{
+            override fun onEditItemClick(data: Todo, position: Int) {
                 val intent = Intent(requireActivity(),EditTaskActivity::class.java)
                 intent.putExtra(Constant.TITLEKEY,data.title)
                 intent.putExtra(Constant.DESKEY,data.description)
@@ -72,7 +71,7 @@ class ListFragment : Fragment() {
         }
     }
     private fun listenerForDelete(){
-        todoAdapter.onDeleteItem = object : TodoAdapter.onItemDeleteListener{
+        todoAdapter.onDeleteItem = object : TodoAdapter.OnItemDeleteListener{
             override fun onDeleteClick(data: Todo, position: Int) {
                 val todo = Todo(
                     id=data.id,
@@ -99,18 +98,20 @@ class ListFragment : Fragment() {
         }
     }
 
-//    fun listenerForImage(){
-//        todoAdapter.onImageClick = object : TodoAdapter.OnImageClickListener{
-//            override fun onImageClick(position: Int) {
-//                val todo = Todo(title = todoAdapter.todoList[position].title
-//                    , description = todoAdapter.todoList[position].description,
-//                date = todoAdapter.todoList[position].date,
-//                isDone = true)
-//                MyDatabase.getInstance(requireContext().applicationContext).getTodoDao()
-//                    .udpate(todo)
-//                refreshAdapter()
-//            }
-//
-//        }
-//    }
+    fun listenerForImageDone(){
+        todoAdapter.onImageDoneClick = object : TodoAdapter.OnImageDoneClickListener{
+            override fun onImageDoneClick(data: Todo, position: Int) {
+                val todo = Todo(
+                    id = data.id,
+                    title = data.title,
+                    description = data.description,
+                    date = data.date,
+                    isDone = true
+                )
+                MyDatabase.getInstance(requireActivity()).getTodoDao().udpate(todo)
+                Log.e("onBindViewHolder","the isDone after updated in database : ${todo.isDone}")
+            }
+
+        }
+    }
 }

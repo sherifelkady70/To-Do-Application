@@ -10,4 +10,5 @@
     <color name="grey">#C8C9CB</color>
     <color name="lime">#DFECDB</color>
     <color name="colorForTimeItem">@color/black</color>
+    <color name="green">#48EF0B</color>
 </resources>
