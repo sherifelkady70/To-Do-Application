@@ -48,7 +48,6 @@
             android:layout_gravity="center"
             app:menu="@menu/nav_menu"
             app:elevation="25dp"
-
             android:background="@color/activity_bg"
             app:itemActiveIndicatorStyle="@null"
             app:itemBackground="@null"

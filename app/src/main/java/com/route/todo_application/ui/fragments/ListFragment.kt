@@ -97,8 +97,7 @@ class ListFragment : Fragment() {
             prepareRV()
         }
     }
-
-    fun listenerForImageDone(){
+    private fun listenerForImageDone(){
         todoAdapter.onImageDoneClick = object : TodoAdapter.OnImageDoneClickListener{
             override fun onImageDoneClick(data: Todo, position: Int) {
                 val todo = Todo(
