@@ -107,7 +107,7 @@ class ListFragment : Fragment() {
                     date = data.date,
                     isDone = true
                 )
-                MyDatabase.getInstance(requireActivity()).getTodoDao().udpate(todo)
+                MyDatabase.getInstance(requireActivity()).getTodoDao().update(todo)
                 Log.e("onBindViewHolder","the isDone after updated in database : ${todo.isDone}")
             }
 

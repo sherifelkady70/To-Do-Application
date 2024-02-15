@@ -31,20 +31,17 @@ class TodoAdapter(var todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.T
         val data : Todo = todoList[position]
         holder.binding.title.text = data.title
         holder.binding.time.text = data.description
-
-        holder.binding.editTxt.setOnClickListener {
-            onEditClick.let {
-               it!!.onEditItemClick(data,position)
-            }
-        }
         holder.binding.swipeLayout.setOnActionsListener(object : SwipeLayout.SwipeActionsListener{
             override fun onOpen(direction: Int, isContinuous: Boolean) {
                 if(direction == SwipeLayout.RIGHT) {
                     holder.binding.swipeLayout.close(true)
                     onDeleteItem!!.onDeleteClick(data,position)
-//                    holder.binding.swipeLayout.close()
-//                    Log.e("onClose swipeLayout and test data ","binding.swipeLayout.close()
-                //                    : ${holder.binding.swipeLayout.close()}")
+                }
+                if(direction == SwipeLayout.LEFT) {
+                    holder.binding.swipeLayout.close(true)
+                    onEditClick.let {
+                        it!!.onEditItemClick(data,position)
+                    }
                 }
             }
 

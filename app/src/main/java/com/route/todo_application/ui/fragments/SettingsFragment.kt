@@ -36,7 +36,6 @@ class SettingsFragment : Fragment() {
         Log.e("onResume in settings","done onResume in settings")
     }
     private fun handleSelectionModes(){
-//        binding.autoCompleteModeTv.setText("Light")
         val modes = arrayOf("Light","Dark")
         val adapter = ArrayAdapter(requireContext(),android.R.layout.simple_dropdown_item_1line,modes)
         binding.autoCompleteModeTv.setAdapter(adapter)

@@ -13,7 +13,7 @@ abstract class MyDatabase : RoomDatabase() {
      abstract fun getTodoDao() : TodoDao
 
      companion object{
-         const val NAME_DATABASE = "Todo Database"
+         private const val NAME_DATABASE = "Todo Database"
          var database : MyDatabase? = null
 
          fun getInstance(context : Context) : MyDatabase{

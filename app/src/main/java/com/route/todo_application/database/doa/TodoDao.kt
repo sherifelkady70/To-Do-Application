@@ -5,7 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.route.todo_application.database.model.Todo
 
 @Dao
@@ -15,7 +14,7 @@ interface TodoDao {
     @Delete
     fun delete(todo: Todo)
     @Update
-    fun udpate(todo: Todo)
+    fun update(todo: Todo)
     @Query("select * from Todo")
     fun getAll() : List<Todo>
     @Query("select * from Todo where date = :dates ")
