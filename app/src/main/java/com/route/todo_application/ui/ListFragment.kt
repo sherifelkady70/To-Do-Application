@@ -1,4 +1,4 @@
-package com.route.todo_application.ui.fragments
+package com.route.todo_application.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,7 +14,6 @@ import com.route.todo_application.database.MyDatabase
 import com.route.todo_application.database.model.Todo
 import com.route.todo_application.databinding.FragmentTasksBinding
 import com.route.todo_application.milliSeconds
-import com.route.todo_application.ui.activities.EditTaskActivity
 
 class ListFragment : Fragment() {
     private val todoAdapter = TodoAdapter(listOf())
@@ -56,7 +55,7 @@ class ListFragment : Fragment() {
     private fun createIntentForEditTask(){
         todoAdapter.onEditClick = object : TodoAdapter.OnEditClickListener{
             override fun onEditItemClick(data: Todo, position: Int) {
-                val intent = Intent(requireActivity(),EditTaskActivity::class.java)
+                val intent = Intent(requireActivity(), EditTaskActivity::class.java)
                 intent.putExtra(Constant.TITLEKEY,data.title)
                 intent.putExtra(Constant.DESKEY,data.description)
                 intent.putExtra(Constant.DATEKEY,data.date)

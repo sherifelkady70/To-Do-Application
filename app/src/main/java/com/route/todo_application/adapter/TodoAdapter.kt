@@ -29,19 +29,21 @@ class TodoAdapter(var todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.T
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         val data : Todo = todoList[position]
+        holder.binding.title.text = data.title
+        holder.binding.time.text = data.description
         if(data.isDone){
-            Log.e("btnTaskIsDone" , "isDone inside onBindMethod : ${data.isDone}")
             holder.binding.apply {
                 btnTaskIsDone.visibility = View.INVISIBLE
                 doneTxt.visibility = View.VISIBLE
                 title.setTextColor(R.drawable.textdone)
                 time.setTextColor(R.drawable.textdone)
             }
+        }else{
+            holder.binding.apply {
+                btnTaskIsDone.visibility = View.VISIBLE
+                doneTxt.visibility = View.INVISIBLE
+            }
         }
-        holder.binding.title.text = data.title
-        holder.binding.time.text = data.description
-
-
         holder.binding.swipeLayout.setOnActionsListener(object : SwipeLayout.SwipeActionsListener{
             override fun onOpen(direction: Int, isContinuous: Boolean) {
                 if(direction == SwipeLayout.RIGHT) {
@@ -61,10 +63,7 @@ class TodoAdapter(var todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.T
         })
         holder.binding.btnTaskIsDone.setOnClickListener {
             onImageDoneClick!!.onImageDoneClick(data,position)
-            Log.e("btnTaskIsDone" , "isDone before updated : ${onImageDoneClick!!.onImageDoneClick(data,position)}")
             if(data.isDone){//isDone = true
-                Log.e("btnTaskIsDone" , "isDone after2  updated : ${onImageDoneClick!!.onImageDoneClick(data,position)}")
-                Log.e("btnTaskIsDone" , "isDone after updated : ${data.isDone}")
                 holder.binding.apply {
                     btnTaskIsDone.visibility = View.INVISIBLE
                     doneTxt.visibility = View.VISIBLE

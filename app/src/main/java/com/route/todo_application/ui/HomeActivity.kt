@@ -1,21 +1,15 @@
-package com.route.todo_application.ui.activities
+package com.route.todo_application.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.ListFragment
-import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.route.todo_application.R
 import com.route.todo_application.databinding.ActivityMainBinding
-import com.route.todo_application.ui.fragments.AddTaskFragment
-import com.route.todo_application.ui.fragments.SettingsFragment
-import java.util.Calendar
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
-    private val listFragment = com.route.todo_application.ui.fragments.ListFragment()
+    private val listFragment = ListFragment()
     private val settingsFragment = SettingsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -6,7 +6,7 @@
     android:layout_gravity="bottom"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.fragments.AddTaskFragment"
+    tools:context=".ui.AddTaskFragment"
     android:background="@color/bottom_nav_bg_color">
 
     <View

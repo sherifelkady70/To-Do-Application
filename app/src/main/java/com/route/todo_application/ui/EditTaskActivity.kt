@@ -1,4 +1,4 @@
-package com.route.todo_application.ui.activities
+package com.route.todo_application.ui
 
 import android.os.Bundle
 import android.util.Log
