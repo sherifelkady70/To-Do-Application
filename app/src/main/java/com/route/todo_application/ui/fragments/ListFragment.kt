@@ -99,7 +99,7 @@ class ListFragment : Fragment() {
     }
     private fun listenerForImageDone(){
         todoAdapter.onImageDoneClick = object : TodoAdapter.OnImageDoneClickListener{
-            override fun onImageDoneClick(data: Todo, position: Int) {
+            override fun onImageDoneClick(data: Todo, position: Int) : Boolean{
                 val todo = Todo(
                     id = data.id,
                     title = data.title,
@@ -109,6 +109,9 @@ class ListFragment : Fragment() {
                 )
                 MyDatabase.getInstance(requireActivity()).getTodoDao().update(todo)
                 Log.e("onBindViewHolder","the isDone after updated in database : ${todo.isDone}")
+                refreshAdapter()
+                Log.e("onBindViewHolder","the isDone after updated in database : ${todo.isDone}")
+                return todo.isDone
             }
 
         }

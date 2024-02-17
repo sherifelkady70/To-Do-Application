@@ -28,7 +28,11 @@ class HomeActivity : AppCompatActivity() {
     private fun bottomNavView(){
         binding.fabAddTask.setOnClickListener {
             val addTaskFragment = AddTaskFragment{
-                listFragment.refreshAdapter()
+                if(binding.bottomNavView.selectedItemId == R.id.tasks){
+                    listFragment.refreshAdapter()
+                }else{
+                    replaceFragments(listFragment)
+                }
             }
            addTaskFragment.show(supportFragmentManager," ")
         }
