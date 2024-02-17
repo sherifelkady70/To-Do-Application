@@ -70,7 +70,6 @@ class TodoAdapter(var todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.T
                     title.setTextColor(R.drawable.textdone)
                     time.setTextColor(R.drawable.textdone)
                 }
-                Log.e("onBindViewHolder" , "in adapter : Done Image ")
             }else{
                 holder.binding.btnTaskIsDone.visibility = View.VISIBLE
                 holder.binding.doneTxt.visibility = View.INVISIBLE

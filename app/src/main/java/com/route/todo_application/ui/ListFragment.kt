@@ -107,9 +107,7 @@ class ListFragment : Fragment() {
                     isDone = true
                 )
                 MyDatabase.getInstance(requireActivity()).getTodoDao().update(todo)
-                Log.e("onBindViewHolder","the isDone after updated in database : ${todo.isDone}")
                 refreshAdapter()
-                Log.e("onBindViewHolder","the isDone after updated in database : ${todo.isDone}")
                 return todo.isDone
             }
 
