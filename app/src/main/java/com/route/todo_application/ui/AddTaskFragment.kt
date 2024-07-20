@@ -1,13 +1,11 @@
 package com.route.todo_application.ui
 
 import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.route.todo_application.clearTime
 import com.route.todo_application.data.database.MyDatabase
@@ -15,6 +13,7 @@ import com.route.todo_application.data.database.model.Todo
 import com.route.todo_application.databinding.FragmentAddTaskBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
+
 @AndroidEntryPoint
 class AddTaskFragment(private val onAddClick : () -> Unit) : BottomSheetDialogFragment() {
     lateinit var binding : FragmentAddTaskBinding
