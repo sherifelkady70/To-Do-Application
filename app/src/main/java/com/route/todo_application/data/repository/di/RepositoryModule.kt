@@ -13,6 +13,6 @@ import javax.inject.Singleton
 abstract class RepositoryModule  {
 
     @Binds
-    abstract fun provideTodoRepository(impl:TodoRepository)
-    :TodoRepositoryImpl
+    abstract fun provideTodoRepository(impl:TodoRepositoryImpl)
+    :TodoRepository
 }
