@@ -18,7 +18,7 @@ import java.util.Calendar
 @AndroidEntryPoint
 class AddTaskFragment(private val onAddClick : () -> Unit) : BottomSheetDialogFragment() {
     lateinit var binding : FragmentAddTaskBinding
-    private var selectedDateForDatabse: Calendar = Calendar.getInstance()
+    private var selectedDateForDatabase: Calendar = Calendar.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,37 +39,35 @@ class AddTaskFragment(private val onAddClick : () -> Unit) : BottomSheetDialogFr
             if(validateTexts()){
                 val title = binding.title.text.toString()
                 val description = binding.description.text.toString()
-                selectedDateForDatabse.clearTime()
+                selectedDateForDatabase.clearTime()
                 val todo = Todo(
                     title = title, description = description, isDone = false,
-                    date = selectedDateForDatabse.timeInMillis)
+                    date = selectedDateForDatabase.timeInMillis)
                 MyDatabase.getInstance(requireActivity().applicationContext).getTodoDao().insert(todo)
                 dismiss()
-                Log.e("add","selectedDate in inserted add Task and after clearTime() and millis : ${selectedDateForDatabse.timeInMillis}")
+                Log.e("add","selectedDate in inserted add Task and after clearTime() and millis : ${selectedDateForDatabase.timeInMillis}")
                 onAddClick.invoke()
             }
         }
     }
 
     private fun handleDate(){
-        binding.selectDateTv.text = "${selectedDateForDatabse.get(Calendar.DAY_OF_MONTH)} /" +
-                "${selectedDateForDatabse.get(Calendar.MONTH)+1} /" +
-                "${selectedDateForDatabse.get(Calendar.YEAR)}"
+        binding.selectDateTv.text = "${selectedDateForDatabase.get(Calendar.DAY_OF_MONTH)} /" +
+                "${selectedDateForDatabase.get(Calendar.MONTH) + 1} /" +
+                "${selectedDateForDatabase.get(Calendar.YEAR)}"
         binding.selectDateTv.setOnClickListener {
-            val datePicker = DatePickerDialog(requireContext(),object : OnDateSetListener{
-                override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-                    selectedDateForDatabse.set(Calendar.YEAR,year)
-                    selectedDateForDatabse.set(Calendar.MONTH,month)
-                    selectedDateForDatabse.set(Calendar.DAY_OF_MONTH,dayOfMonth)
+            val datePicker = DatePickerDialog(requireContext(),
+                { _, year, month, dayOfMonth ->
+                    selectedDateForDatabase.set(Calendar.YEAR,year)
+                    selectedDateForDatabase.set(Calendar.MONTH,month)
+                    selectedDateForDatabase.set(Calendar.DAY_OF_MONTH,dayOfMonth)
                     binding.selectDateTv.text = "${dayOfMonth}/${month+1}/${year}"
-                }
-
-            }, selectedDateForDatabse.get(Calendar.DAY_OF_MONTH),selectedDateForDatabse.get(Calendar.MONTH)+1
-                ,selectedDateForDatabse.get(Calendar.YEAR))
+                }, selectedDateForDatabase.get(Calendar.DAY_OF_MONTH),selectedDateForDatabase.get(Calendar.MONTH)+1
+                ,selectedDateForDatabase.get(Calendar.YEAR))
             datePicker.datePicker.minDate = Calendar.getInstance().timeInMillis
             datePicker.show()
         }
-        Log.e("add","selectedDate of add Task before clearTime(): ${selectedDateForDatabse}")
+        Log.e("add","selectedDate of add Task before clearTime(): ${selectedDateForDatabase}")
         fabAddTask()
     }
 
