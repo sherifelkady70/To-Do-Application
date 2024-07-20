@@ -3,6 +3,7 @@ package com.route.todo_application.data.database.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.route.todo_application.domain.models.TODO
 
 @Entity
 data class Todo(
@@ -16,4 +17,9 @@ data class Todo(
     var date: Long,
     @ColumnInfo
     var isDone: Boolean
-        )
+        ){
+    fun toTodoDomain() : TODO{
+        return TODO(id=id,title=title,
+            description=description, date = date,isDone=isDone)
+    }
+}
