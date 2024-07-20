@@ -6,7 +6,9 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import com.route.todo_application.R
 import com.route.todo_application.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
     private val listFragment = ListFragment()

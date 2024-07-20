@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.route.todo_application.Constant
 import com.route.todo_application.adapter.TodoAdapter
-import com.route.todo_application.database.MyDatabase
-import com.route.todo_application.database.model.Todo
+import com.route.todo_application.data.database.MyDatabase
+import com.route.todo_application.data.database.model.Todo
 import com.route.todo_application.databinding.FragmentTasksBinding
 import com.route.todo_application.milliSeconds
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ListFragment : Fragment() {
     private val todoAdapter = TodoAdapter(listOf())
     lateinit var binding: FragmentTasksBinding

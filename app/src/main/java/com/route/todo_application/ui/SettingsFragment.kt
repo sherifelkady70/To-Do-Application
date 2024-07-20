@@ -10,7 +10,9 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.route.todo_application.databinding.FragmentSettingsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingsFragment : Fragment() {
 
     lateinit var binding : FragmentSettingsBinding

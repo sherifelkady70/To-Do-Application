@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.route.todo_application.Constant
-import com.route.todo_application.database.MyDatabase
-import com.route.todo_application.database.model.Todo
+import com.route.todo_application.data.database.MyDatabase
+import com.route.todo_application.data.database.model.Todo
 import com.route.todo_application.databinding.ContentTaskDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EditTaskActivity : AppCompatActivity() {
     lateinit var binding : ContentTaskDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {

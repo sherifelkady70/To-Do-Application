@@ -1,11 +1,11 @@
-package com.route.todo_application.database.doa
+package com.route.todo_application.data.database.doa
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.route.todo_application.database.model.Todo
+import com.route.todo_application.data.database.model.Todo
 
 @Dao
 interface TodoDao {

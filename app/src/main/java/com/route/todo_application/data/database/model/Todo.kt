@@ -1,4 +1,4 @@
-package com.route.todo_application.database.model
+package com.route.todo_application.data.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

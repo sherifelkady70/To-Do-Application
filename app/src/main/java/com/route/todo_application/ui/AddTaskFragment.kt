@@ -10,11 +10,12 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.route.todo_application.clearTime
-import com.route.todo_application.database.MyDatabase
-import com.route.todo_application.database.model.Todo
+import com.route.todo_application.data.database.MyDatabase
+import com.route.todo_application.data.database.model.Todo
 import com.route.todo_application.databinding.FragmentAddTaskBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
-
+@AndroidEntryPoint
 class AddTaskFragment(private val onAddClick : () -> Unit) : BottomSheetDialogFragment() {
     lateinit var binding : FragmentAddTaskBinding
     private var selectedDateForDatabse: Calendar = Calendar.getInstance()

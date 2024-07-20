@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.route.todo_application.R
-import com.route.todo_application.database.model.Todo
+import com.route.todo_application.data.database.model.Todo
 import com.route.todo_application.databinding.ItemTaskBinding
 import com.zerobranch.layout.SwipeLayout
 
@@ -83,10 +83,10 @@ class TodoAdapter(var todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.T
 
     var onEditClick : OnEditClickListener?=null
     interface OnEditClickListener {
-        fun onEditItemClick(data:Todo, position: Int)
+        fun onEditItemClick(data: Todo, position: Int)
     }
     var onDeleteItem : OnItemDeleteListener?=null
     interface OnItemDeleteListener{
-        fun onDeleteClick(data:Todo,position: Int)
+        fun onDeleteClick(data: Todo, position: Int)
     }
 }
