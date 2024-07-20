@@ -2,15 +2,15 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
     namespace 'com.route.todo_application'
     compileSdk 34
 
-    viewBinding{
-        enabled = true
-    }
+    viewBinding.enabled = true
+
     defaultConfig {
         applicationId "com.route.todo_application"
         minSdk 24
@@ -53,5 +53,9 @@ dependencies {
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
     //SwipeLayout
     implementation 'com.github.zerobranch:SwipeLayout:1.3.1'
+
+    //hilt
+    implementation "com.google.dagger:hilt-android:2.51.1"
+    kapt "com.google.dagger:hilt-compiler:2.51.1"
 
 }
